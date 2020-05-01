@@ -4,7 +4,7 @@ import NavBar from './Components/Navigation Bar/NavBar.js';
 import FrontPage from './Components/Front Page/FrontPage.js';
 import About from './Components/About/About.js';
 import Chat from './Components/Chat/Chat.js'
-
+import Settings from './Components/Settings/Settings.js'
 function App() {
   return (
     <Router>
@@ -15,6 +15,7 @@ function App() {
     <Route path ="/" exact component = {FrontPage}/>
     <Route path = "/About" component = {About} />
     <Route path = "/Chatting" component = {Chat}/>
+    <Route path ="/Settings" component={Settings}/>
     </Switch>
     </div>
     </Router>
