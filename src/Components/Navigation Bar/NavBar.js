@@ -17,8 +17,12 @@ class NavBar extends Component{
             <li className = "about"><a>About</a></li>
             </Link>
 
-            <Link to= "/">
-<li className = "home"> <a> Home </a> </li>
+            <Link to= "/Chatting">
+            <li className = "home"> <a> Home </a> </li>
+            </Link>
+
+            <Link to ="/">
+                <li className = "LogOut"><a>LogOut</a></li>
             </Link>
             </ul>
             </div>

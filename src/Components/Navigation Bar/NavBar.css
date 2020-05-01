@@ -29,7 +29,16 @@
     background-position:center;
     display: flex;
     background-repeat:no-repeat ;
-    float:right;
+    float:Left;
+}
+
+.LogOut{
+    background-size: 40px;
+    background-color: black;
+    background-position:center;
+    display: flex;
+    background-repeat:no-repeat ;
+    float:right;  
 }
   
   li a {
