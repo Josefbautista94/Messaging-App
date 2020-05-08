@@ -12,9 +12,12 @@ app.get("/", (_, res) => {
   res.send("Hello, World!");
 });
 
+/**
+ * Example socket events
+ */
 io.on("connection", (socket) => {
-  socket.on("message", () => {
-    io.emit("message", "Message received");
+  socket.on("frontend message", (data) => {
+    io.emit("backend message", data);
   });
 });
 
