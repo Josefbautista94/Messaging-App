@@ -8,6 +8,8 @@ const SOCKET_PORT = 8000;
 
 app.use(express.json());
 
+app.use("/api/auth", require("./api/auth"));
+
 app.get("/", (_, res) => {
   res.send("Hello, World!");
 });
