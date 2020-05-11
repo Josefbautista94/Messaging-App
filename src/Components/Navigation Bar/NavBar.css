@@ -1,53 +1,43 @@
-.Nav-Ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color:rgb(253, 253, 253);
-   
-   
-   
-   
-    
-  
-  }
-
-  .about{
-    background-size: 40px;
-    background-color: black;
-    background-position:center;
-    display: flex;
-    background-repeat:no-repeat ;
-    float:right;
-  }
-
-  
- 
-.home{
-    background-size: 40px;
-    background-color: black;
-    background-position:center;
-    display: flex;
-    background-repeat:no-repeat ;
-    float:Left;
+.Nav-Ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: rgb(253, 253, 253);
 }
 
-.LogOut{
-    background-size: 40px;
-    background-color: black;
-    background-position:center;
-    display: flex;
-    background-repeat:no-repeat ;
-    float:right;  
+.about {
+	background-size: 40px;
+	background-color: black;
+	background-position: center;
+	display: flex;
+	background-repeat: no-repeat;
+	float: right;
 }
-  
-  li a {
-    display: block;
-    color: rgb(253, 253, 253);
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
-  }
-  
- 
+
+.home {
+	background-size: 40px;
+	background-color: black;
+	background-position: center;
+	display: flex;
+	background-repeat: no-repeat;
+	float: Left;
+}
+
+.LogOut {
+	background-size: 40px;
+	background-color: black;
+	background-position: center;
+	display: flex;
+	background-repeat: no-repeat;
+	float: right;
+}
+
+li a {
+	display: block;
+	color: rgb(253, 253, 253);
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}

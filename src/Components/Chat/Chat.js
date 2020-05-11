@@ -1,23 +1,39 @@
 import React, { Component } from 'react';
-import './Chat.css'
-import {Link} from 'react-router-dom';
-class Chat extends Component{
+import './Chat.css';
+import { Link } from 'react-router-dom';
+class Chat extends Component {
+	render() {
+		return (
+			<div className="page">
+				<body className="chatBody">
+					<div className="container">
+						<div className="mySide">
+							<div className="myMessage" />
+						</div>
 
-render(){
+						<div className="TheirSide">
+							<div className="theirMessage" />
+						</div>
+					</div>
+					<form className="Form">
+						<textarea className="textArea" placeholder="send a message" />
+						<button className="send">Send</button>
+					</form>
+				</body>
 
-    return(
-        <div> 
-        <header>
-        <h1 className ="chatting">This is where the chats would take place once some one has logged in click home to go back to the main page</h1>
-        </header>
-        <body>
-        <Link to ="/Settings">
-            <button className = "settings"> Settings </button>
-            </Link>
-        </body>
-        </div>
-    )
-}
+				<ul className="chatBarUl">
+					<li className="messages">
+						<a>Messages</a>
+					</li>
+					<Link to="/Settings">
+						<li className="settings">
+							<a>Settings</a>
+						</li>
+					</Link>
+				</ul>
+			</div>
+		);
+	}
 }
 
 export default Chat;

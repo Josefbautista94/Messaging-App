@@ -1,27 +1,126 @@
-.chatting{
-    color:rgb(240, 236, 236);
+.settings {
+	background: url("../Images/settings.png");
+	background-size: 95px;
+	background-color: black;
+	background-position: center;
+	display: flex;
+	background-repeat: no-repeat;
+	float: right;
 }
 
-.settings{
-    background: url("../Images/settings.png");
-    background-size: 60px;
-   color:rgb(20, 57, 98) ;
-   font-weight: 800;
-    background-position:center;
-    display: flex;
-    background-repeat:no-repeat ;
-    width: 60px;
-    height: 60px;
-    border-radius: 15px;
-    outline: 0;
-    right:0;
-    bottom:   0;
-    position: absolute;
+.settings:hover {
+	background-color: rgb(12, 12, 12);
+	color: rgb(2, 2, 2);
+	opacity: .6;
+	text-shadow: 1px 1px 2px rgb(226, 222, 222), 0 0 25px rgb(241, 241, 250), 0 0 5px rgb(208, 208, 216);
 }
 
-.settings:hover{
-    background-color: rgb(12, 12, 12);
-    color: rgb(2, 2, 2);
-    opacity: .6;
-    text-shadow: 1px 1px 2px rgb(226, 222, 222), 0 0 25px rgb(241, 241, 250), 0 0 5px rgb(208, 208, 216);
+.page {
+	display: block;
+	height: 100vh;
+	width: 100%;
+	align-items: center;
+	background-color: rgb(20, 57, 98);
+	flex: column;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	height: 500px;
+	max-height: 500px;
+	overflow: auto;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	padding-bottom: 10px;
+	margin-top: 25px;
+	background-color: rgb(13, 14, 14);
+}
+.mySide {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 10px;
+}
+
+.myMessage {
+	width: 45%;
+	background-color: rgb(54, 115, 255);
+	color: rgb(2, 2, 2);
+	padding: 10px;
+	margin-right: 5px;
+	text-align: center;
+	border-top-right-radius: 10%;
+	border-bottom-right-radius: 10%;
+}
+
+.TheirSide {
+	justify-content: flex-start;
+}
+.theirMessage {
+	width: 45%;
+	background-color: rgb(255, 255, 255);
+	color: lightgray;
+	border: 1px solid lightgray;
+	padding: 10px;
+	margin-left: 5px;
+	text-align: center;
+	border-top-left-radius: 10%;
+	border-bottom-left-radius: 10%;
+}
+.Form {
+	width: 400px;
+}
+
+.send {
+	background-color: white;
+	width: 100%;
+	border: none;
+	height: 50px;
+	border-radius: 10px;
+	color: #46516e;
+	font-size: 17px;
+}
+
+.textArea {
+	width: 98%;
+	height: 100px;
+	border-radius: 10px;
+	margin-top: 10px;
+	padding-top: 10px;
+	font-size: 17px;
+	background-color: white;
+	border: 1px solid lightgray;
+	outline: none;
+	color: rgb(134, 128, 128);
+	letter-spacing: 1px;
+	line-height: 20px;
+}
+.textArea::placeholder {
+	color: rgb(129, 122, 122);
+}
+
+.chatBody {
+	text-align: center;
+}
+
+.chatBarUl {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: rgb(253, 253, 253);
+	bottom: 0;
+	position: fixed;
+	width: 100%;
+}
+
+.messages {
+	background-size: 40px;
+	background-color: black;
+	background-position: center;
+	display: flex;
+	background-repeat: no-repeat;
+	float: Left;
 }
