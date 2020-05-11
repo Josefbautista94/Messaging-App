@@ -2,10 +2,25 @@ import React, { Component } from 'react';
 import './Chat.css';
 import { Link } from 'react-router-dom';
 class Chat extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {};
+	}
+
+	messageButton = () => {
+		const msgBtn = document.getElementById('msgPanel');
+		if (msgBtn.style.display === 'none') {
+			msgBtn.style.display = 'block';
+		} else {
+			msgBtn.style.display = 'none';
+		}
+	};
 	render() {
+		const { messageActive } = this.setState;
+		const { messageButton } = this;
 		return (
 			<div className="page">
-				<body className="chatBody">
+				<body id="msgPanel" className="chatBody">
 					<div className="container">
 						<div className="mySide">
 							<div className="myMessage" />
@@ -22,9 +37,10 @@ class Chat extends Component {
 				</body>
 
 				<ul className="chatBarUl">
-					<li className="messages">
+					<li id="messageBtn" className="messages" onClick={messageButton}>
 						<a>Messages</a>
 					</li>
+
 					<Link to="/Settings">
 						<li className="settings">
 							<a>Settings</a>

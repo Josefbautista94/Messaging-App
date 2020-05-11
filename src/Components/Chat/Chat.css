@@ -101,10 +101,14 @@
 	color: rgb(129, 122, 122);
 }
 
+#msgPanel,
 .chatBody {
 	text-align: center;
 }
 
+#panel {
+	display: none;
+}
 .chatBarUl {
 	list-style-type: none;
 	margin: 0;
@@ -123,4 +127,11 @@
 	display: flex;
 	background-repeat: no-repeat;
 	float: Left;
+}
+
+.messages:hover {
+	background-color: rgb(12, 12, 12);
+	color: rgb(2, 2, 2);
+	opacity: .6;
+	text-shadow: 1px 1px 2px rgb(226, 222, 222), 0 0 25px rgb(241, 241, 250), 0 0 5px rgb(208, 208, 216);
 }
