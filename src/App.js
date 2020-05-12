@@ -5,7 +5,7 @@ import FrontPage from './Components/Front Page/FrontPage.js';
 import About from './Components/About/About.js';
 import Chat from './Components/Chat/Chat.js';
 import Settings from './Components/Settings/Settings.js';
-import Socket from 'socket.io-client';
+// import Socket from 'socket.io-client';
 
 class App extends React.Component {
 	constructor(props) {

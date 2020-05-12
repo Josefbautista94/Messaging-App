@@ -23,7 +23,7 @@ const Chat = () => {
 	}
 
 	useEffect(() => {
-		socketRef.current = io.connect('http//localhost:5000');
+		socketRef.current = io.connect('http://localhost:8000');
 
 		socketRef.current.on('Your id', (id) => {
 			setYourID(id);
