@@ -9,15 +9,6 @@ const Chat = () => {
   const [message, setMessage] = useState("");
   const socketRef = useRef();
 
-  function messageButton() {
-    const msgBtn = document.getElementById("msgPanel");
-    if (msgBtn.style.display === "none") {
-      msgBtn.style.display = "block";
-    } else {
-      msgBtn.style.display = "none";
-    }
-  }
-
   function receivedMessage(message) {
     setMessages((oldMsgs) => [...oldMsgs, message]);
   }
@@ -51,6 +42,26 @@ const Chat = () => {
 
   return (
     <div className="page">
+      <aside className="sidebar">
+        <div className="chat-list">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+            <div className="cell" key={n}>
+              <div className="user-cell">
+                <div>User {n}</div>
+                <div className="preview">
+                  This is a fake long message tdmaowdmoawdoawd
+                </div>
+              </div>
+              <div className="divider"></div>
+            </div>
+          ))}
+        </div>
+        <div className="settings">
+          <Link className="settings-link" to="/Settings">
+            Settings
+          </Link>
+        </div>
+      </aside>
       <div id="msgPanel" className="chatBody">
         <div className="container">
           {messages.map((message, index) => {
@@ -68,10 +79,9 @@ const Chat = () => {
             );
           })}
         </div>
-
         <form className="Form" onSubmit={sendMessage}>
-          <textarea
-            className="textArea"
+          <input
+            className="input"
             value={message}
             onChange={handleChange}
             placeholder="send a message"
@@ -79,15 +89,6 @@ const Chat = () => {
           <button className="send">Send</button>
         </form>
       </div>
-
-      <ul className="chatBarUl">
-        <li id="messageBtn" className="messages" onClick={messageButton}>
-          Messages
-        </li>
-        <li className="settings">
-          <Link to="/Settings">Settings</Link>
-        </li>
-      </ul>
     </div>
   );
 };
