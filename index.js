@@ -1,27 +1,28 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const http = require('http').createServer(app);
-const socketIo = require('socket.io');
+const http = require("http").createServer(app);
+const socketIo = require("socket.io");
 const io = socketIo(http);
 const PORT = 5000;
 const SOCKET_PORT = 8000;
 
 app.use(express.json());
 
-app.use('/api/auth', require('./api/auth'));
+app.use("/api/auth", require("./api/auth"));
+app.use("/api/messages", require("./api/messages"));
 
-app.get('/', (_, res) => {
-	res.send('Hello, World!');
+app.get("/", (_, res) => {
+  res.send("Hello, World!");
 });
 
 /**
  * Example socket events
  */
-io.on('connection', (socket) => {
-	socket.emit('Your id', socket.id);
-	socket.on('frontend message', (data) => {
-		io.emit('backend message', data);
-	});
+io.on("connection", (socket) => {
+  socket.emit("Your id", socket.id);
+  socket.on("frontend message", (data) => {
+    io.emit("backend message", data);
+  });
 });
 
 io.listen(SOCKET_PORT);
