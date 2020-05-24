@@ -40,6 +40,8 @@ const Chat = () => {
     setMessage(e.target.value);
   }
 
+
+
   return (
     <div className="page">
       <aside className="sidebar">

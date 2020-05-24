@@ -5,6 +5,7 @@ import FrontPage from "./Components/Front Page/FrontPage.js";
 import About from "./Components/About/About.js";
 import Chat from "./Components/Chat/Chat.js";
 import Settings from "./Components/Settings/Settings.js";
+import Register from "./Components/Register/Register.js";
 // import Socket from 'socket.io-client';
 
 class App extends React.Component {
@@ -38,7 +39,9 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
-          <NavBar />
+        <Route path="/" exact component={FrontPage} />
+        <Route path="/Register" component={Register} />
+        <NavBar />
           <Switch>
             <Route path="/" exact component={FrontPage} />
             <Route path="/About" component={About} />

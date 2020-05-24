@@ -4,28 +4,54 @@ const jwt = require("jsonwebtoken");
 const UUIDV4 = require("uuid").v4;
 const User = require("../models").User;
 
+const SECRETE_KEY = "sEcReT kEy";
+
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-
   if (!email || !password) {
-    return res.status(409).json({ msg: "Please complete fields to continue" });
+    return res.status(409).json(
+      { 
+        status: "error",
+        msg: "Please complete fields to continue",
+        data: null
+      }
+    );
   }
 
   try {
     let user = await User.findOne({
       where: { email, password },
-      attributes: ["id"],
+      attributes: ["id", "name"],
     });
 
     if (!user) {
-      return res.status(409).json({ msg: "Email or password is wrong" });
+      return res.status(409).json(
+        { 
+          status: "error",
+          msg: "Email or password is wrong",
+          data: null
+        }
+      );
     }
 
-    let token = jwt.sign({ id: user.get("id") }, "sEcReT kEy");
+    let token = jwt.sign({ id: user.get("id"), name: user.get("name") }, SECRETE_KEY);
 
-    res.json({ token });
+    res.json(
+      { 
+        status: 'ok',
+        msg: "User logged",
+        data: null,
+        token
+      }
+    );
   } catch (e) {
-    res.status(409).json({ msg: "Failed to login user" });
+    res.status(500).json(
+      { 
+        status: "error",
+        msg: "Failed to login user",
+        data: null
+      }
+      );
   }
 });
 
@@ -39,7 +65,13 @@ router.post("/registration", async (req, res) => {
   if (password !== confPass) {
     return res
       .status(409)
-      .json({ msg: "The passwords you entered do not match" });
+      .json(
+        { 
+          status: "error",
+          msg: "The passwords you entered do not match",
+          data: null
+        }
+      );
   }
 
   try {
@@ -50,12 +82,37 @@ router.post("/registration", async (req, res) => {
     const created = results[1];
 
     if (!created) {
-      return res.status(409).json({ msg: "Email is already in use" });
+      return res.status(409).json(
+        {
+          status: "error",
+          msg: "Email is already in use",
+          data: null
+        });
     }
 
-    res.json({ msg: "Successfully created new user" });
+    let user = await User.findOne({
+      where: { email, password },
+      attributes: ["id", "name"],
+    });
+
+    let token = jwt.sign({ id: user.get("id"), name: user.get("name") }, SECRETE_KEY);
+
+    res.json(
+      { 
+        status: 'ok',
+        msg: "Successfully created new user",
+        data: null,
+        token
+      }
+    );
   } catch (e) {
-    res.status(409).json({ msg: "Failed to register user" });
+    res.status(500).json(
+      { 
+        status: "error",
+        msg: "Failed to register user",
+        data: null
+      }
+      );
   }
 });
 
