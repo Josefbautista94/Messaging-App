@@ -12,7 +12,13 @@ constructor(props){
         name:"",
         email: ""
     };
-     
-}
+    //this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this);
+     }
 
+     handleSubmit(event){
+         this.setState({submitted:true});
+         
+     } 
 }
