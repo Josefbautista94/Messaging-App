@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Settings.css';
 
-<<<<<<< HEAD
 class Settings extends Component {
 	setLocalStorage = (color) => {
 		const storage = window.localStorage;
@@ -47,30 +46,6 @@ class Settings extends Component {
 			</div>
 		);
 	}
-=======
-const green = '#39D1B4';
-const yellow = '#FFD712';
-
-class Settings extends Component{
-
-    constructor(props){
-        super(props);
-        this.state = { color: green };
-        this.changeColor = this.changeColor.bind(this);
-      }
-      changeColor(){
-        const newColor = this.state.color == green ? yellow : green;
-        this.setState({ color: newColor })
-      }
-      render(){
-        return(
-          <div style={{background: this.state.color}}>
-          <h1>Change my color</h1>
-          <button onClick={this.changeColor}>Click</button>
-          </div>
-        )
-      }
->>>>>>> 9bc0b7bfd88d4c629c7d6f94cd111e06e09fbfc6
 }
 
 export default Settings;
