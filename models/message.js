@@ -22,12 +22,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         required: true,
       },
-      chatId: {
-        allowNull: false,
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        required: true,
-      },
     },
     {}
   );

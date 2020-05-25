@@ -1,22 +1,22 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("Messages", {
+    return queryInterface.createTable("ChatMessages", {
       id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.INTEGER,
       },
-      message: {
+      chatId: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
         required: true,
       },
-      userId: {
+      messageId: {
         allowNull: false,
         type: Sequelize.UUID,
         references: {
-          model: "Users",
+          model: "Messages",
           key: "id",
         },
         required: true,
@@ -32,6 +32,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("Messages");
+    return queryInterface.dropTable("ChatMessages");
   },
 };

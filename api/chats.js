@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const Op = require("sequelize").Op;
-const UUIDV4 = require("uuid").v4;
-const { Chat, Message, User, UserChat } = require("../models");
+const { ChatMessage, Message, UserChat } = require("../models");
 
 /**
  * Retrieves all the chats for a user
@@ -18,13 +16,31 @@ router.get("/", async (req, res) => {
   try {
     const userId = await jwt.verify(token, "sEcReT kEy").id;
 
-    let chats = await UserChat.findAll({
+    const chats = await UserChat.findAll({
       where: { userId },
       attributes: ["chatId"],
       order: [["createdAt", "DESC"]],
     });
 
-    res.json({ chats });
+    let chatMessages = [];
+
+    for (let chat of chats) {
+      const messages = await ChatMessage.findAll({
+        where: { chatId: chat.chatId },
+        attributes: [],
+        include: [{ model: Message, attributes: ["message", "createdAt"] }],
+      });
+
+      chatMessages = [
+        {
+          chatId: chat.chatId,
+          messages,
+        },
+        ...chatMessages,
+      ];
+    }
+
+    res.json({ chatMessages });
   } catch (e) {
     console.log(e);
 
@@ -59,8 +75,6 @@ router.post("/:chatId/:toId", async (req, res) => {
 
     res.json({ msg: "Successfully created chat" });
   } catch (e) {
-    console.log(e);
-
     res.status(500).json({ msg: "Error occured creating chat" });
   }
 });
