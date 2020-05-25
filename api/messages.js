@@ -1,31 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const Op = require("sequelize").Op;
 const UUIDV4 = require("uuid").v4;
 const { Message, ChatMessage } = require("../models");
 
-// router.get("/:chatId", async (req, res) => {
-//   const token = req.headers.authorization;
-
-//   if (!token) {
-//     return res.status(401).json({ msg: "Authorization token is missing" });
-//   }
-
-//   try {
-//     const chatId = req.params.chatId;
-
-//     const messages = await Message.findAll({
-//       where: { chatId },
-//       order: [["createdAt", "DESC"]],
-//     });
-
-//     res.json({ messages });
-//   } catch (e) {
-//     res.status(500).json({ msg: "Failed to retreive messages" });
-//   }
-// });
-
+/**
+ * This route is for creating messages and associating
+ * that message to a chat.
+ *
+ * TODO: Refactor database so that it can be easier
+ * to include message and user info associated with
+ * chats
+ */
 router.post("/:chatId", async (req, res) => {
   const token = req.headers.authorization;
 

@@ -4,6 +4,9 @@ const jwt = require("jsonwebtoken");
 const UUIDV4 = require("uuid").v4;
 const User = require("../models").User;
 
+/**
+ * This route is for logging in the user
+ */
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -29,6 +32,9 @@ router.post("/login", async (req, res) => {
   }
 });
 
+/**
+ * This route is for registering a user
+ */
 router.post("/registration", async (req, res) => {
   const { name, email, password, confPass } = req.body;
 

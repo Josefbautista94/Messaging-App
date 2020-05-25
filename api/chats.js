@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const { ChatMessage, Message, UserChat } = require("../models");
 
 /**
- * Retrieves all the chats for a user
+ * Retrieves all the chats for a user is in
  */
 router.get("/", async (req, res) => {
   const token = req.headers.authorization;
@@ -49,9 +49,9 @@ router.get("/", async (req, res) => {
 });
 
 /**
- * This routes expects a chat id uuid generated
+ * This routes expects a chat id generated
  * on the frontend and the id of the recepient
- * who will be joining the chat.
+ * who will also be associated with the chat.
  */
 router.post("/:chatId/:toId", async (req, res) => {
   const token = req.headers.authorization;
