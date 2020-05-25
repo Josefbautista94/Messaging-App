@@ -11,5 +11,19 @@ export default class FrontPage extends React.Component {
 			name: '',
 			email: ''
 		};
+		//this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
+	}
+
+	handleSubmit(event) {
+		this.setState({ submitted: true });
+
+		const data = {
+			name: this.state.name,
+			email: this.state.email,
+			password: this.state.password,
+			confPass: this.state.confPass
+		};
 	}
 }
