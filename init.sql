@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS chatapp;
+DROP DATABASE IF EXISTS chatapp;
 DROP ROLE IF EXISTS admin;
 -- Comment the following lines to only drop newly created database and roles
 CREATE ROLE admin WITH LOGIN PASSWORD 'admin';

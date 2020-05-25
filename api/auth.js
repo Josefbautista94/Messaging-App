@@ -4,18 +4,17 @@ const jwt = require("jsonwebtoken");
 const UUIDV4 = require("uuid").v4;
 const User = require("../models").User;
 
-const SECRETE_KEY = "sEcReT kEy";
-
+/**
+ * This route is for logging in the user
+ */
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    return res.status(409).json(
-      { 
-        status: "error",
-        msg: "Please complete fields to continue",
-        data: null
-      }
-    );
+    return res.status(409).json({
+      status: "error",
+      msg: "Please complete fields to continue",
+      data: null,
+    });
   }
 
   try {
@@ -25,36 +24,36 @@ router.post("/login", async (req, res) => {
     });
 
     if (!user) {
-      return res.status(409).json(
-        { 
-          status: "error",
-          msg: "Email or password is wrong",
-          data: null
-        }
-      );
+      return res.status(409).json({
+        status: "error",
+        msg: "Email or password is wrong",
+        data: null,
+      });
     }
 
-    let token = jwt.sign({ id: user.get("id"), name: user.get("name") }, SECRETE_KEY);
-
-    res.json(
-      { 
-        status: 'ok',
-        msg: "User logged",
-        data: null,
-        token
-      }
+    let token = jwt.sign(
+      { id: user.get("id"), name: user.get("name") },
+      "sEcReT kEy"
     );
+
+    res.json({
+      status: "ok",
+      msg: "User logged",
+      data: null,
+      token,
+    });
   } catch (e) {
-    res.status(500).json(
-      { 
-        status: "error",
-        msg: "Failed to login user",
-        data: null
-      }
-      );
+    res.status(500).json({
+      status: "error",
+      msg: "Failed to login user",
+      data: null,
+    });
   }
 });
 
+/**
+ * This route is for registering a user
+ */
 router.post("/registration", async (req, res) => {
   const { name, email, password, confPass } = req.body;
 
@@ -63,15 +62,11 @@ router.post("/registration", async (req, res) => {
   }
 
   if (password !== confPass) {
-    return res
-      .status(409)
-      .json(
-        { 
-          status: "error",
-          msg: "The passwords you entered do not match",
-          data: null
-        }
-      );
+    return res.status(409).json({
+      status: "error",
+      msg: "The passwords you entered do not match",
+      data: null,
+    });
   }
 
   try {
@@ -82,12 +77,11 @@ router.post("/registration", async (req, res) => {
     const created = results[1];
 
     if (!created) {
-      return res.status(409).json(
-        {
-          status: "error",
-          msg: "Email is already in use",
-          data: null
-        });
+      return res.status(409).json({
+        status: "error",
+        msg: "Email is already in use",
+        data: null,
+      });
     }
 
     let user = await User.findOne({
@@ -95,24 +89,23 @@ router.post("/registration", async (req, res) => {
       attributes: ["id", "name"],
     });
 
-    let token = jwt.sign({ id: user.get("id"), name: user.get("name") }, SECRETE_KEY);
-
-    res.json(
-      { 
-        status: 'ok',
-        msg: "Successfully created new user",
-        data: null,
-        token
-      }
+    let token = jwt.sign(
+      { id: user.get("id"), name: user.get("name") },
+      "sEcReT kEy"
     );
+
+    res.json({
+      status: "ok",
+      msg: "Successfully created new user",
+      data: null,
+      token,
+    });
   } catch (e) {
-    res.status(500).json(
-      { 
-        status: "error",
-        msg: "Failed to register user",
-        data: null
-      }
-      );
+    res.status(500).json({
+      status: "error",
+      msg: "Failed to register user",
+      data: null,
+    });
   }
 });
 
