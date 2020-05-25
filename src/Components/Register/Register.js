@@ -19,6 +19,14 @@ constructor(props){
 
      handleSubmit(event){
          this.setState({submitted:true});
-         
+
+         const data = 
+         {
+          name:this.state.name,
+          email:this.state.email,
+          password:this.state.password,
+          confPass:this.state.confPass}
+         }
+
      } 
 }
