@@ -1,173 +1,191 @@
 .sidebar {
-  display: flex;
-  width: 300px;
-  background-color: rgb(212, 212, 212);
-  flex-direction: column;
+	display: flex;
+	width: 300px;
+	background-color: rgb(212, 212, 212);
+	flex-direction: column;
 }
 
 .chat-list {
-  flex: 1;
-  width: 100%;
+	flex: 1;
+	width: 100%;
 }
 
 .cell {
-  height: 50px;
-  padding: 10px 10px 0;
+	height: 50px;
+	padding: 10px 10px 0;
 }
 
 .cell:last-child > .divider {
-  display: none;
+	display: none;
 }
 
 .user-cell {
-  height: 49px;
+	height: 49px;
 }
 
 .preview {
-  margin-top: 5px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+	margin-top: 5px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 .divider {
-  border-bottom: thin solid gray;
+	border-bottom: thin solid gray;
 }
 
 .settings {
-  height: 56px;
-  font-size: 20pt;
-  line-height: 55px;
-  text-indent: 50px;
-  text-decoration: none;
-  background: url("../Images/settings.png");
-  background-size: 65px;
-  background-color: black;
-  background-position: right;
-  background-repeat: no-repeat;
-  cursor: pointer;
+	height: 56px;
+	font-size: 20pt;
+	line-height: 55px;
+	text-indent: 50px;
+	text-decoration: none;
+	background: url("../Images/settings.png");
+	background-size: 65px;
+	background-color: black;
+	background-position: right;
+	background-repeat: no-repeat;
+	cursor: pointer;
 }
 
 .settings-link {
-  color: white;
-  text-decoration: none;
+	color: white;
+	text-decoration: none;
 }
 
 .settings:hover {
-  background-color: rgb(12, 12, 12);
-  color: rgb(2, 2, 2);
+	background-color: rgb(12, 12, 12);
+	color: rgb(2, 2, 2);
 }
 
 .page {
-  display: flex;
-  height: calc(100vh - 46px);
-  width: 100%;
-  background-color: rgb(20, 57, 98);
+	display: flex;
+	height: calc(100vh - 46px);
+	width: 100%;
+	background-color: rgb(20, 57, 98);
 }
 
 .container {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  overflow: auto;
-  padding-bottom: 10px;
-  background-color: rgb(13, 14, 14);
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	overflow: auto;
+	padding-bottom: 10px;
+	/* background: rgb(13, 14, 14); */
 }
+/* body {
+	background: red;
+} */
+button {
+	padding: 1em;
+}
+/* [data-color ="black"] {
+	background: black;
+}
+[data-color="red"] {
+	background: red;
+}
+[data-color="blue"] {
+	background: blue;
+}
+[data-color="green"] {
+	background: green;
+} */
+
 .mySide {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 10px;
 }
 
 .myMessage {
-  width: 45%;
-  background-color: rgb(54, 115, 255);
-  color: rgb(2, 2, 2);
-  padding: 10px;
-  margin-right: 5px;
-  text-align: center;
-  border-top-right-radius: 10%;
-  border-bottom-right-radius: 10%;
+	width: 45%;
+	background-color: rgb(54, 115, 255);
+	color: rgb(2, 2, 2);
+	padding: 10px;
+	margin-right: 5px;
+	text-align: center;
+	border-top-right-radius: 10%;
+	border-bottom-right-radius: 10%;
 }
 
 .TheirSide {
-  justify-content: flex-start;
+	justify-content: flex-start;
 }
 .theirMessage {
-  width: 45%;
-  background-color: rgb(255, 255, 255);
-  color: lightgray;
-  border: 1px solid lightgray;
-  padding: 10px;
-  margin-left: 5px;
-  text-align: center;
-  border-top-left-radius: 10%;
-  border-bottom-left-radius: 10%;
+	width: 45%;
+	background-color: rgb(255, 255, 255);
+	color: lightgray;
+	border: 1px solid lightgray;
+	padding: 10px;
+	margin-left: 5px;
+	text-align: center;
+	border-top-left-radius: 10%;
+	border-bottom-left-radius: 10%;
 }
 .Form {
-  display: flex;
-  height: 56px;
+	display: flex;
+	height: 56px;
 }
 
 .send {
-  background-color: white;
-  height: 56px;
-  width: 56px;
-  border: none;
-  border-left: thin solid lightgray;
-  color: #46516e;
-  font-size: 17px;
+	background-color: white;
+	height: 56px;
+	width: 56px;
+	border: none;
+	border-left: thin solid lightgray;
+	color: #46516e;
+	font-size: 17px;
 }
 
 .input {
-  flex: 1;
-  font-size: 17px;
-  background-color: white;
-  border: 1px solid lightgray;
-  outline: none;
-  letter-spacing: 1px;
-  line-height: 20px;
-  padding: 5px;
+	flex: 1;
+	font-size: 17px;
+	background-color: white;
+	border: 1px solid lightgray;
+	outline: none;
+	letter-spacing: 1px;
+	line-height: 20px;
+	padding: 5px;
 }
 
 .input::placeholder {
-  color: rgb(129, 122, 122);
+	color: rgb(129, 122, 122);
 }
 
 .chatBody {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
 }
 
 #panel {
-  display: none;
+	display: none;
 }
 .chatBarUl {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: rgb(253, 253, 253);
-  bottom: 0;
-  position: fixed;
-  width: 100%;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: rgb(253, 253, 253);
+	bottom: 0;
+	position: fixed;
+	width: 100%;
 }
 
 .messages {
-  background-size: 40px;
-  background-color: black;
-  background-position: center;
-  display: flex;
-  background-repeat: no-repeat;
-  float: Left;
+	background-size: 40px;
+	background-color: black;
+	background-position: center;
+	display: flex;
+	background-repeat: no-repeat;
+	float: Left;
 }
 
 .messages:hover {
-  background-color: rgb(12, 12, 12);
-  color: rgb(2, 2, 2);
-  opacity: 0.6;
-  text-shadow: 1px 1px 2px rgb(226, 222, 222), 0 0 25px rgb(241, 241, 250),
-    0 0 5px rgb(208, 208, 216);
+	background-color: rgb(12, 12, 12);
+	color: rgb(2, 2, 2);
+	opacity: 0.6;
+	text-shadow: 1px 1px 2px rgb(226, 222, 222), 0 0 25px rgb(241, 241, 250), 0 0 5px rgb(208, 208, 216);
 }
