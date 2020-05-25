@@ -10,6 +10,7 @@ app.use(express.json());
 
 app.use("/api/auth", require("./api/auth"));
 app.use("/api/messages", require("./api/messages"));
+app.use("/api/chats", require("./api/chats"));
 
 app.get("/", (_, res) => {
   res.send("Hello, World!");

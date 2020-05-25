@@ -3,9 +3,9 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const Op = require("sequelize").Op;
 const UUIDV4 = require("uuid").v4;
-const { Message, User } = require("../models");
+const { Message, User, UserChats, Chats } = require("../models");
 
-router.get("/:userId", async (req, res) => {
+router.get("/:chatId", async (req, res) => {
   const token = req.headers.authorization;
 
   if (!token) {
@@ -13,14 +13,10 @@ router.get("/:userId", async (req, res) => {
   }
 
   try {
-    const toId = req.params.userId;
-    const fromId = await jwt.verify(token, "sEcReT kEy").id;
+    const chatId = req.params.chatId;
 
     const messages = await Message.findAll({
-      where: {
-        fromId,
-        toId,
-      },
+      where: { chatId },
       order: [["createdAt", "DESC"]],
     });
 
@@ -38,18 +34,8 @@ router.post("/:userId", async (req, res) => {
   }
 
   try {
-    const toId = req.params.userId;
-    const fromId = await jwt.verify(token, "sEcReT kEy").id;
-
-    const total = await User.count({
-      where: { [Op.or]: [{ id: toId }, { id: fromId }] },
-    });
-
-    if (total !== 2) {
-      return res.status(409).json({ msg: `An invalid user id was provided` });
-    }
-
-    const message = req.body.message;
+    const userId = await jwt.verify(token, "sEcReT kEy").id;
+    const { message, chatId = UUIDV4() } = req.body;
 
     if (!message) {
       return res.status(409).json({ msg: `Message must not be empty or null` });
@@ -58,8 +44,8 @@ router.post("/:userId", async (req, res) => {
     await Message.create({
       id: UUIDV4(),
       message,
-      toId,
-      fromId,
+      userId,
+      chatId,
     });
 
     res.json({ msg: "Successfully created message" });
