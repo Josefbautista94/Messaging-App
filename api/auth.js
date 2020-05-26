@@ -1,41 +1,112 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+const UUIDV4 = require("uuid").v4;
+const User = require("../models").User;
 
-router.post("/login", (req, res) => {
+/**
+ * This route is for logging in the user
+ */
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-
   if (!email || !password) {
-    res.status(409).json({ msg: "Please complete fields to continue" });
+    return res.status(409).json({
+      status: "error",
+      msg: "Please complete fields to continue",
+      data: null,
+    });
   }
 
-  /**
-   * TODO: Use User model to verify if
-   * email and password belong to a user
-   * to authenticate them. Also, Generate token
-   * to create session.
-   */
+  try {
+    let user = await User.findOne({
+      where: { email, password },
+      attributes: ["id", "name"],
+    });
 
-  res.json({ msg: "Successully logged in" });
+    if (!user) {
+      return res.status(409).json({
+        status: "error",
+        msg: "Email or password is wrong",
+        data: null,
+      });
+    }
+
+    let token = jwt.sign(
+      { id: user.get("id"), name: user.get("name") },
+      "sEcReT kEy"
+    );
+
+    res.json({
+      status: "ok",
+      msg: "User logged",
+      data: null,
+      token,
+    });
+  } catch (e) {
+    res.status(500).json({
+      status: "error",
+      msg: "Failed to login user",
+      data: null,
+    });
+  }
 });
 
-router.post("/registration", (req, res) => {
+/**
+ * This route is for registering a user
+ */
+router.post("/registration", async (req, res) => {
   const { name, email, password, confPass } = req.body;
 
   if (!name || !email || !password || !confPass) {
-    res.status(409).json({ msg: "Please fill in all fields" });
+    return res.status(409).json({ msg: "Please fill in all fields" });
   }
 
   if (password !== confPass) {
-    res.status(409).json({ msg: "The passwords you entered do not match" });
+    return res.status(409).json({
+      status: "error",
+      msg: "The passwords you entered do not match",
+      data: null,
+    });
   }
 
-  /**
-   * TODO: Use User model to check if a user already exists
-   * using the given email. If not, create new user
-   * in the database.
-   */
+  try {
+    const results = await User.findOrCreate({
+      where: { email },
+      defaults: { name, password, id: UUIDV4() },
+    });
+    const created = results[1];
 
-  res.json({ msg: "Successfully created new user." });
+    if (!created) {
+      return res.status(409).json({
+        status: "error",
+        msg: "Email is already in use",
+        data: null,
+      });
+    }
+
+    let user = await User.findOne({
+      where: { email, password },
+      attributes: ["id", "name"],
+    });
+
+    let token = jwt.sign(
+      { id: user.get("id"), name: user.get("name") },
+      "sEcReT kEy"
+    );
+
+    res.json({
+      status: "ok",
+      msg: "Successfully created new user",
+      data: null,
+      token,
+    });
+  } catch (e) {
+    res.status(500).json({
+      status: "error",
+      msg: "Failed to register user",
+      data: null,
+    });
+  }
 });
 
 module.exports = router;
